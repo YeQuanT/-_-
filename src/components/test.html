@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <c-dialog
+        ref="loginDialog"
+        title='请输入你的昵称'
+        confirmBtn="开始聊天"
+        @confirm="login"
+        >
+        <input class="nickname" v-model="nickname" type="text" placeholder="请输入你的昵称">
+        </c-dialog>
+       
+        <div class="web-im">
+        <div class="header im-title">聊天室</div>
+        <div class="content im-record">
+        <div class="li" :class="{user: item.uid == uid}" v-for="item in messageList">
+        <template v-if="item.type===1">
+        <p class="join-tips">{{item.msg}}</p >
+        </template>
+        <template v-else>
+        <div class="img">{{item.nickname}}</div>
+        <p class="message-box">{{item.msg}}</p >
+        </template>
+        </div>
+        </div>
+        <div class="footer im-input">
+        <input type="text" v-model="msg" placeholder="请输入内容">
+        <button @click="send">发送</button>
+        </div>
+        </div>
+       </div>
+</body>
+</html>
